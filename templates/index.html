@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HTMX + W3.CSS + Go</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="https://unpkg.com/htmx.org@1.9.2"></script>
+</head>
+<body class="w3-container w3-padding">
+
+    <h2 class="w3-teal w3-padding">HTMX + Go API Demo</h2>
+
+    <button 
+        class="w3-button w3-blue w3-margin-top"
+        hx-get="/api/message"
+        hx-target="#message"
+        hx-swap="innerHTML">
+        Load Message
+    </button>
+
+    <div id="message" class="w3-panel w3-light-grey w3-margin-top"></div>
+
+</body>
+</html>
