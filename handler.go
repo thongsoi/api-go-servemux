@@ -1,7 +1,6 @@
 package main
 
 import (
-	"encoding/json"
 	"html/template"
 	"net/http"
 )
@@ -11,8 +10,21 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	tmpl.Execute(w, nil)
 }
 
-func APIMessageHandler(w http.ResponseWriter, r *http.Request) {
-	response := map[string]string{"message": "Hello from Go API!"}
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(response)
+func SubmitHandler(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodPost {
+		http.Error(w, "Invalid method", http.StatusMethodNotAllowed)
+		return
+	}
+
+	name := r.FormValue("name")
+	email := r.FormValue("email")
+
+	_, err := DB.Exec("INSERT INTO users2 (name, email) VALUES ($1, $2)", name, email)
+	if err != nil {
+		http.Error(w, "Database error", http.StatusInternalServerError)
+		return
+	}
+
+	tmpl := template.Must(template.ParseFiles("templates/success.html"))
+	tmpl.Execute(w, "User saved successfully.")
 }

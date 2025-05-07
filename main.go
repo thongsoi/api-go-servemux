@@ -14,20 +14,13 @@ func main() {
 		log.Fatal("Error loading .env file")
 	}
 
+	InitDB()
+
 	mux := http.NewServeMux()
-
-	// Route handlers
 	mux.HandleFunc("/", HomeHandler)
-	mux.HandleFunc("/api/message", APIMessageHandler)
-
-	// Static files (if needed)
-	fs := http.FileServer(http.Dir("./static"))
-	mux.Handle("/static/", http.StripPrefix("/static/", fs))
+	mux.HandleFunc("/submit", SubmitHandler)
 
 	port := os.Getenv("PORT")
-	log.Printf("Server running on http://localhost:%s", port)
-	err = http.ListenAndServe(":"+port, mux)
-	if err != nil {
-		log.Fatal(err)
-	}
+	log.Println("Server listening on http://localhost:" + port)
+	log.Fatal(http.ListenAndServe(":"+port, mux))
 }

@@ -1,23 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>HTMX + W3.CSS + Go</title>
+    <title>Form Submission</title>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <script src="https://unpkg.com/htmx.org@1.9.2"></script>
 </head>
 <body class="w3-container w3-padding">
 
-    <h2 class="w3-teal w3-padding">HTMX + Go API Demo</h2>
+    <h2 class="w3-teal w3-padding">HTMX + Go + PostgreSQL</h2>
 
-    <button 
-        class="w3-button w3-blue w3-margin-top"
-        hx-get="/api/message"
-        hx-target="#message"
-        hx-swap="innerHTML">
-        Load Message
-    </button>
+    <form class="w3-container w3-card-4" 
+          hx-post="/submit"
+          hx-target="#result"
+          hx-swap="innerHTML">
+        <p>
+            <label>Name</label>
+            <input class="w3-input" type="text" name="name" required>
+        </p>
+        <p>
+            <label>Email</label>
+            <input class="w3-input" type="email" name="email" required>
+        </p>
+        <p>
+            <button class="w3-button w3-green">Submit</button>
+        </p>
+    </form>
 
-    <div id="message" class="w3-panel w3-light-grey w3-margin-top"></div>
+    <div id="result" class="w3-margin-top"></div>
 
 </body>
 </html>
