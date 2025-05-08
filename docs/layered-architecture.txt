@@ -1,0 +1,31 @@
+myapp/
+│
+├── cmd/                    # Main application entry point
+│   └── myapp/
+│       └── main.go         # Starts the server and initializes routes
+│
+├── internal/
+│   ├── handlers/           # HTTP handlers (with HTMX partials & JSON APIs)
+│   │   ├── home.go
+│   │   ├── user.go
+│   │   └── api.go          # JSON-based API endpoints
+│   │
+│   ├── models/             # Database models and CRUD operations
+│   │   └── user.go
+│   │
+│   ├── store/              # PostgreSQL-related logic (queries, db setup)
+│   │   └── postgres.go
+│   │
+│   └── templates/          # HTML templates using HTMX + W3.CSS
+│       ├── base.html
+│       ├── home.html
+│       └── partials/
+│           └── user_list.html
+│
+├── static/                 # Static files: CSS, JS, images
+│   └── css/
+│       └── style.css       # Optional custom CSS over W3.CSS
+│
+├── config.json             # Configuration (e.g., DB connection string)
+├── go.mod
+└── README.md

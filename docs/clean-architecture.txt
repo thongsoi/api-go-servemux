@@ -1,0 +1,54 @@
+|-----------------------------|
+|          Entities           | ← Core business logic and data models
+|-----------------------------|
+
+|         Use Cases           | ← Application-specific business rules
+|-----------------------------|
+
+|   Interface Adapters        |
+| (Presenters, Gateways...)   | ← Convert data from use cases to external formats
+|-----------------------------|
+
+| Frameworks & Drivers        |
+| (DB, Web, UI, etc.)         | ← Outer layer with infrastructure details
+|-----------------------------|
+
+
+myapp/
+│
+├── cmd/
+│   └── myapp/
+│       └── main.go                   # Entry point; wires everything together
+│
+├── internal/
+│   ├── core/
+│   │   ├── entities/                # Business objects
+│   │   │   └── user.go
+│   │   │
+│   │   └── usecases/                # Business logic / application rules
+│   │       └── user_usecase.go
+│   │
+│   ├── ports/                       # Interfaces (abstract definitions)
+│   │   ├── user_repository.go       # Repository interface
+│   │   └── http_handler.go          # HTTP handler interface
+│   │
+│   ├── adapters/
+│   │   ├── postgres/                # DB adapter implementing repository
+│   │   │   └── user_repo.go
+│   │   │
+│   │   └── http/                    # HTTP handlers + HTMX templates
+│   │       ├── handlers.go
+│   │       └── templates.go
+│   │
+│   └── templates/                   # HTML templates using W3.CSS + HTMX
+│       ├── base.html
+│       └── partials/
+│           └── user_list.html
+│
+├── static/                          # Static assets (CSS, JS, images)
+│   └── css/
+│       └── style.css
+│
+├── go.mod
+├── config.json
+└── README.md
