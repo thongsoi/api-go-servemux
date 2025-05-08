@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form Submission</title>
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <script src="https://unpkg.com/htmx.org@1.9.2"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://unpkg.com/htmx.org@2.0.4"></script>
 </head>
 <body class="w3-container w3-padding">
 
-    <h2 class="w3-teal w3-padding">HTMX + Go + PostgreSQL</h2>
+    <h2 class="w3-blue w3-padding">HTMX + Go + PostgreSQL</h2>
 
     <form class="w3-container w3-card-4" 
           hx-post="/submit"
@@ -22,7 +25,11 @@
             <input class="w3-input" type="email" name="email" required>
         </p>
         <p>
-            <button class="w3-button w3-green">Submit</button>
+            <label>Phone</label>
+            <input class="w3-input" type="tel" name="phone" required>
+        </p>
+        <p>
+            <button class="w3-button w3-deep-purple w3-hover-blue w3-round-large">Submit</button>
         </p>
     </form>
 
